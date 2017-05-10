@@ -11,29 +11,13 @@ export class Component extends WebComponent {
     state: any;
     /**
      *  Defines standard component configuration.
-     */    
+     */
     config: Component.ComponentConfigOptions;
     /**
      *  Template helper functions defined in config object, and exposed to template code as $helpers.
      *  This getter uses the component's internal config cache.
      */
     helpers: any;
-    /**
-     * Called when an instance of the Component is attached to the DOM.
-     */
-     attachedCallback(): void;
-    /**
-     * Called when an attribute is changed, appended, removed, or replaced on the Component.
-     */
-     attributeChangedCallback(attributeName: string, oldValue: any, newValue: any);
-    /**
-     * Called when an instance of the Component is created.
-     */
-     createdCallback(): void;
-    /**
-     * Called when an instance of the Component is detached from the DOM.
-     */
-     detachedCallback(): void;
     /**
      * For use inside view templates, to create a child Panel component nested under this
      * component, which will share its state object and update cycle.
@@ -79,7 +63,7 @@ declare namespace Component {
         /* Function transforming state object to virtual dom tree */
         template(state: any): VNode;
         /* Component-specific Shadow DOM stylesheet */
-        css: string;
+        css?: string;
         /* An initial default value for the component's state property */
         defaultState?: any;
         /* Properties and functions injected automatically into template state object */
@@ -90,15 +74,5 @@ declare namespace Component {
         updateSync?: boolean;
         /* Whether to use Shadow DOM */
         useShadowDom?: boolean;
-    }
-}
-
-declare global {
-    interface Document {
-        /**
-         *  Registers a new custom element in the browser and returns a constructor for
-         *  the new element.
-         */
-        registerElement(name: string, prototype?: any): any;
     }
 }
